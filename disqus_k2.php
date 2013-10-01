@@ -32,10 +32,13 @@ class plgK2Disqus_K2 extends K2Plugin {
 		$plugin       = & JPluginHelper::getPlugin('k2', $this->pluginName);
 		$pluginParams = new JParameter($plugin->params);
 
+		$disqusUrl = $pluginParams->get('disqusUrl');
 		$site_root      = JURI::current();
 		$shortname      = $pluginParams->get('shortname');
 		$identifier     = $item->id;
 		$parsedInModule = $params->get('parsedInModule');
+
+		$disqusUrl = ($disqusUrl != '') ? $disqusUrl : $site_root;
 
 		if ($parsedInModule == 1) {
 			if ($this->isK2()):
@@ -44,7 +47,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $shortname . '\',
 					disqus_title = \'' . $item->title . '\';
-					disqus_url = \'' . $site_root . '\';
+					disqus_url = \'' . $disqusUrl . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
 					s.type = \'text/javascript\';
@@ -63,7 +66,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				var disqus_shortname = \'' . $shortname . '\',
 					disqus_identifier = \'' . $identifier . '\',
 					disqus_title = \'' . $item->title . '\',
-					disqus_url = \'' . $site_root . '\';
+					disqus_url = \'' . $disqusUrl . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
 					s.type = \'text/javascript\';
@@ -85,8 +88,11 @@ class plgK2Disqus_K2 extends K2Plugin {
 		$plugin       = & JPluginHelper::getPlugin('k2', $this->pluginName);
 		$pluginParams = new JParameter($plugin->params);
 
+		$disqusUrl = $pluginParams->get('disqusUrl');
 		$site_root = JURI::current();
 		$shortname = $pluginParams->get('shortname');
+
+		$disqusUrl = ($disqusUrl != '') ? $disqusUrl : $site_root;
 
 		if ($this->isArticlePage()) {
 			$output = '';
@@ -95,7 +101,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $pluginParams->get('shortname') . '\',
 					disqus_title = \'' . $this->doc->getTitle() . '\',
-					disqus_url = \'' . $site_root . '\';
+					disqus_url = \'' . $disqusUrl . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
 					s.type = \'text/javascript\';
