@@ -20,7 +20,7 @@
 
 	<params>
 				<param name="shortname" type="text" default="" label="DISQUS_SHORTNAME_LABEL" description="DISQUS_SHORTNAME_DESC" />
-				<param name="shortname" type="text" default="" label="DISQUS_SHORTNAME_LABEL" description="DISQUS_SHORTNAME_DESC" />
+				<param name="disqusUrl" type="text" default="" label="DISQUS_URL_LABEL" description="DISQUS_URL_DESC" />
 	</params>
 	
 	<config>
