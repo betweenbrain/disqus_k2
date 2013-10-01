@@ -83,41 +83,6 @@ class plgK2Disqus_K2 extends K2Plugin {
 		}
 	}
 
-	function onBeforeRender() {
-		$mainframe    = & JFactory::getApplication();
-		$plugin       = & JPluginHelper::getPlugin('k2', $this->pluginName);
-		$pluginParams = new JParameter($plugin->params);
-
-		$disqusUrl = $pluginParams->get('disqusUrl');
-		$site_root = JURI::current();
-		$shortname = $pluginParams->get('shortname');
-
-		$disqusUrl = ($disqusUrl != '') ? $disqusUrl : $site_root;
-
-		if ($this->isArticlePage()) {
-			$output = '';
-		} else {
-			$output = '
-				<script  type="text/javascript">
-				var disqus_shortname = \'' . $pluginParams->get('shortname') . '\',
-					disqus_title = \'' . $this->doc->getTitle() . '\',
-					disqus_url = \'' . $disqusUrl . '\';
-				(function () {
-					var s = document.createElement(\'script\'); s.async = true;
-					s.type = \'text/javascript\';
-					s.src = \'http://' . $pluginParams->get('shortname') . '.disqus.com/count.js\';
-					(document.getElementsByTagName(\'HEAD\')[0] || document.getElementsByTagName(\'BODY\')[0]).appendChild(s);
-					}());
-				</script>
-			';
-		}
-
-		// Only render for HTML output
-		if ($this->doctype == 'html') {
-			$this->doc->addCustomTag($output);
-		}
-	}
-
 	function onK2CommentsCounter(&$item, &$params, $limitstart) {
 		$mainframe = & JFactory::getApplication();
 
