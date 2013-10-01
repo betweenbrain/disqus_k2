@@ -46,12 +46,11 @@ class plgK2Disqus_K2 extends K2Plugin {
 				var disqus_shortname = \'' . $shortname . '\',
 					disqus_title = \'' . $item->title . '\';
 					disqus_url = \'' . $disqusUrl . '\';
-				(function () {
-					var s = document.createElement(\'script\'); s.async = true;
-					s.type = \'text/javascript\';
-					s.src = \'http://' . $this->params->get('shortname') . '.disqus.com/count.js\';
-					(document.getElementsByTagName(\'HEAD\')[0] || document.getElementsByTagName(\'BODY\')[0]).appendChild(s);
-					}());
+					(function() {
+			             var dsq = document.createElement(\'script\'); dsq.type = \'text/javascript\'; dsq.async = true;
+			             dsq.src = \'//\'' . $shortname . '\'.disqus.com/embed.js\';
+			             (document.getElementsByTagName(\'head\')[0] || document.getElementsByTagName(\'body\')[0]).appendChild(dsq);
+			        })();
 				</script>
 			';
 			endif;
@@ -66,11 +65,11 @@ class plgK2Disqus_K2 extends K2Plugin {
 					disqus_title = \'' . $item->title . '\',
 					disqus_url = \'' . $disqusUrl . '\';
 				(function () {
-					var s = document.createElement(\'script\'); s.async = true;
-					s.type = \'text/javascript\';
-					s.src = \'http://' . $shortname . '.disqus.com/count.js\';
-					(document.getElementsByTagName(\'HEAD\')[0] || document.getElementsByTagName(\'BODY\')[0]).appendChild(s);
-					}());
+					(function() {
+			             var dsq = document.createElement(\'script\'); dsq.type = \'text/javascript\'; dsq.async = true;
+			             dsq.src = \'//\'' . $shortname . '\'.disqus.com/embed.js\';
+			             (document.getElementsByTagName(\'head\')[0] || document.getElementsByTagName(\'body\')[0]).appendChild(dsq);
+			        })();
 				</script>
 				';
 
