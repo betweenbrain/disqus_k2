@@ -20,8 +20,11 @@ class plgK2Disqus_K2 extends K2Plugin {
 	function plgK2Disqus_K2(& $subject, $params) {
 		parent::__construct($subject, $params);
 		jimport('joomla.html.parameter');
-		$this->plugin = & JPluginHelper::getPlugin('k2', 'disqus_k2');
-		$this->params = new JParameter($this->plugin->params);
+
+		$this->doc     = JFactory::getDocument();
+		$this->doctype = $this->doc->getType();
+		$this->plugin  = & JPluginHelper::getPlugin('k2', 'disqus_k2');
+		$this->params  = new JParameter($this->plugin->params);
 	}
 
 	function onK2BeforeDisplay(&$item, &$params, $limitstart) {
@@ -40,7 +43,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				$output = '
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $shortname . '\',
-					disqus_title = \'' . $this->getTitle() . '\';
+					disqus_title = \'' . $this->doc->getTitle() . '\';
 					disqus_url = \'' . $site_root . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
@@ -59,7 +62,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $shortname . '\',
 					disqus_identifier = \'' . $identifier . '\',
-					disqus_title = \'' . $this->getTitle() . '\',
+					disqus_title = \'' . $this->doc->getTitle() . '\',
 					disqus_url = \'' . $site_root . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
@@ -70,12 +73,9 @@ class plgK2Disqus_K2 extends K2Plugin {
 				</script>
 				';
 
-			$document = JFactory::getDocument();
-			$doctype  = $document->getType();
-
 			// Only render for HTML output
-			if ($doctype == 'html') {
-				$document->addCustomTag($output);
+			if ($this->doctype == 'html') {
+				$this->doc->addCustomTag($output);
 			}
 		}
 	}
@@ -94,7 +94,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 			$output = '
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $pluginParams->get('shortname') . '\',
-					disqus_title = \'' . $this->getTitle() . '\',
+					disqus_title = \'' . $this->doc->getTitle() . '\',
 					disqus_url = \'' . $site_root . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
@@ -106,12 +106,9 @@ class plgK2Disqus_K2 extends K2Plugin {
 			';
 		}
 
-		$document = JFactory::getDocument();
-		$doctype  = $document->getType();
-
 		// Only render for HTML output
-		if ($doctype == 'html') {
-			$document->addCustomTag($output);
+		if ($this->doctype == 'html') {
+			$this->doc->addCustomTag($output);
 		}
 	}
 
