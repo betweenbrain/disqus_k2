@@ -43,7 +43,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				$output = '
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $shortname . '\',
-					disqus_title = \'' . $this->doc->getTitle() . '\';
+					disqus_title = \'' . $item->title . '\';
 					disqus_url = \'' . $site_root . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
@@ -62,7 +62,7 @@ class plgK2Disqus_K2 extends K2Plugin {
 				<script  type="text/javascript">
 				var disqus_shortname = \'' . $shortname . '\',
 					disqus_identifier = \'' . $identifier . '\',
-					disqus_title = \'' . $this->doc->getTitle() . '\',
+					disqus_title = \'' . $item->title . '\',
 					disqus_url = \'' . $site_root . '\';
 				(function () {
 					var s = document.createElement(\'script\'); s.async = true;
