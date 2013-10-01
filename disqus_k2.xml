@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="3.0" type="plugin" group="k2" method="upgrade">
+	<name>Disqus for K2</name>
+	<author>Marek Wojtaszek</author>
+	<creationDate>April 17th, 2012</creationDate>
+	<copyright>Copyright (c) 2012 Marek Wojtaszek. All rights reserved.</copyright>
+	<authorEmail>marek@nika-foto.pl</authorEmail>
+	<authorUrl>www.nika-foto.pl</authorUrl>
+	<version>1.2</version>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>Plugin for integration K2 with DISQUS comment system.</description>
+
+	<languages>
+		 <language tag="en-GB">en-GB.plg_k2_disqus_k2.ini</language>
+	 </languages>
+
+	<files>
+		<filename plugin="disqus_k2">disqus_k2.php</filename>
+	</files>
+
+	<params>
+				<param name="shortname" type="text" default="" label="DISQUS_SHORTNAME_LABEL" description="DISQUS_SHORTNAME_DESC" />
+	</params>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="shortname" type="text" default="" label="DISQUS_SHORTNAME_LABEL" description="DISQUS_SHORTNAME_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</install>
