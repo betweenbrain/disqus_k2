@@ -28,11 +28,10 @@ class plgK2Disqus_K2 extends K2Plugin {
 	}
 
 	function onK2BeforeDisplay(&$item, &$params, $limitstart) {
-		$mainframe    = & JFactory::getApplication();
 		$plugin       = & JPluginHelper::getPlugin('k2', $this->pluginName);
 		$pluginParams = new JParameter($plugin->params);
 
-		$disqusUrl = $pluginParams->get('disqusUrl');
+		$disqusUrl      = $pluginParams->get('disqusUrl');
 		$site_root      = JURI::current();
 		$shortname      = $pluginParams->get('shortname');
 		$identifier     = $item->id;
@@ -100,8 +99,6 @@ class plgK2Disqus_K2 extends K2Plugin {
 	}
 
 	function onK2CommentsBlock(&$item, &$params, $limitstart) {
-		$mainframe = & JFactory::getApplication();
-
 		$plugin       = & JPluginHelper::getPlugin('k2', $this->pluginName);
 		$pluginParams = new JParameter($plugin->params);
 
